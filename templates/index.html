@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Approval Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        h2 {
+            text-align: center;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <h1>Loan Approval Prediction</h1>
+    <form action="/predict" method="post">
+
+        <label for="feature1">education</label>
+        <input type="text" name="feature1" required><br>
+
+        <label for="feature2">self_employed</label>
+        <input type="text" name="feature2" required><br>
+
+        <label for="feature3">income_annum</label>
+        <input type="text" name="feature3" required><br>
+
+        <label for="feature4">loan_amount</label>
+        <input type="text" name="feature4" required><br>
+
+        <label for="feature5">loan_term</label>
+        <input type="text" name="feature5" required><br>
+
+        <label for="feature6">cibil_score</label>
+        <input type="text" name="feature6" required><br>
+
+        <label for="feature7">residential_assets_value</label>
+        <input type="text" name="feature7" required><br>
+
+        <label for="feature8">commercial_assets_value</label>
+        <input type="text" name="feature8" required><br>
+        
+        <label for="feature9">luxury_assets_value</label>
+        <input type="text" name="feature9" required><br>
+        
+        <label for="feature10">bank_asset_value</label>
+        <input type="text" name="feature10" required><br>
+
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+        <h2>Prediction: {{ prediction }}</h2>
+    {% endif %}
+</body>
+</html>
