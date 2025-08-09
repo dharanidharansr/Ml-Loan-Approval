@@ -1,6 +1,6 @@
 streamlit
 pandas
 scikit-learn
-pickle
 flask
 numpy
+threadpoolctl
