@@ -46,7 +46,11 @@ def predict():
         return render_template('index.html', error=error_message)
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     # Use environment variable for port (required for most hosting platforms)
     import os
     port = int(os.environ.get('PORT', 5000))
     app.run(debug=False, host='0.0.0.0', port=port)
+=======
+    app.run(debug=True,host='0.0.0.0')
+>>>>>>> 92cb4b76a9930032f08f820510bbf3acb406596a
