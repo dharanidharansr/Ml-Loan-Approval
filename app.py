@@ -14,15 +14,28 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    
-    features = [float(x) for x in request.form.values()]
-    features_array = np.array(features).reshape(1, -1)
-
-    prediction = model.predict(features_array)
-
-    
-    result = 'Approved' if prediction[0] == 0 else 'Not Approved'
-    return render_template('index.html', prediction=result)
+    try:
+        # Clean and convert form values - remove commas and convert to float
+        features = []
+        for x in request.form.values():
+            # Remove commas and any other non-numeric characters except decimal point
+            cleaned_value = str(x).replace(',', '').replace(' ', '')
+            features.append(float(cleaned_value))
+        
+        features_array = np.array(features).reshape(1, -1)
+        prediction = model.predict(features_array)
+        
+        result = 'Approved' if prediction[0] == 0 else 'Not Approved'
+        return render_template('index.html', prediction=result)
+        
+    except ValueError as e:
+        # Handle conversion errors gracefully
+        error_message = f"Please enter valid numbers in all fields. Error: {str(e)}"
+        return render_template('index.html', error=error_message)
+    except Exception as e:
+        # Handle any other errors
+        error_message = f"An error occurred during prediction. Please try again."
+        return render_template('index.html', error=error_message)
 
 if __name__ == '__main__':
     app.run(debug=True)
