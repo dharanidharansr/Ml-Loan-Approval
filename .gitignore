@@ -1,7 +1,7 @@
 ml/
 __pycache__/
 *.pyc
-*.pkl
 .env
 .DS_Store
 *.ipynb_checkpoints
+test_model.py
