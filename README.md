@@ -131,8 +131,8 @@ The model is trained on a comprehensive loan approval dataset with **4,269 recor
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/LoanGenius.git
-   cd LoanGenius
+   git clone https://github.com/dharanidharansr/Ml-Loan-Approval.git
+   cd Ml-Loan-Approval
    ```
 
 2. **Create and activate virtual environment**
@@ -231,7 +231,7 @@ The machine learning model achieves excellent performance metrics:
 ## 📁 Project Structure
 
 ```
-LoanGenius/
+Ml-Loan-Approval/
 │
 ├── 📄 app.py                    # Flask web application
 ├── 📄 model.pkl                 # Trained ML model
@@ -283,9 +283,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support & Contact
 
-- 📧 **Email:** your.email@example.com
-- 🐛 **Issues:** [GitHub Issues](https://github.com/yourusername/LoanGenius/issues)
-- 💬 **Discussions:** [GitHub Discussions](https://github.com/yourusername/LoanGenius/discussions)
+- 📧 **Email:** dharanidharansr@example.com
+- 🐛 **Issues:** [GitHub Issues](https://github.com/dharanidharansr/Ml-Loan-Approval/issues)
+- 💬 **Discussions:** [GitHub Discussions](https://github.com/dharanidharansr/Ml-Loan-Approval/discussions)
 
 ---
 
@@ -300,8 +300,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ```bash
 # Clone and setup
-git clone https://github.com/yourusername/LoanGenius.git
-cd LoanGenius
+git clone https://github.com/dharanidharansr/Ml-Loan-Approval.git
+cd Ml-Loan-Approval
 python -m venv ml
 ml\Scripts\activate  # Windows
 pip install -r requirements.txt
