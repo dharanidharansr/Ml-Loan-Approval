@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LoanGenius - Smart Loan Approval Predictor</title>
+    <title>Loan Helper - Your Personal Loan Assistant</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -13,15 +13,15 @@
         }
 
         :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --card-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-            --error-gradient: linear-gradient(135deg, #fc466b 0%, #3f5efb 100%);
+            --primary-gradient: linear-gradient(135deg, #6B73FF 0%, #9A60B2 100%);
+            --card-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --success-gradient: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+            --error-gradient: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
             --text-dark: #2d3748;
-            --text-light: #718096;
+            --text-light: #4a5568;
             --border-color: #e2e8f0;
-            --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.1);
-            --shadow-strong: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --shadow-soft: 0 8px 25px rgba(0, 0, 0, 0.08);
+            --shadow-strong: 0 15px 35px rgba(0, 0, 0, 0.12);
         }
 
         body {
@@ -56,7 +56,7 @@
         .container {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(20px);
-            border-radius: 24px;
+            border-radius: 20px;
             box-shadow: var(--shadow-strong);
             max-width: 800px;
             width: 100%;
@@ -68,8 +68,8 @@
         }
 
         .container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
         }
 
         .header {
@@ -199,7 +199,7 @@
             width: 100%;
             padding: 16px 20px;
             border: 2px solid var(--border-color);
-            border-radius: 16px;
+            border-radius: 12px;
             font-size: 1rem;
             font-weight: 500;
             transition: all 0.3s ease;
@@ -209,10 +209,10 @@
 
         .input-group input:focus {
             outline: none;
-            border-color: #4facfe;
+            border-color: #667eea;
             background: white;
-            box-shadow: 0 0 0 4px rgba(79, 172, 254, 0.1);
-            transform: translateY(-2px);
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            transform: translateY(-1px);
         }
 
         .input-group input:valid {
@@ -249,13 +249,12 @@
             background: var(--card-gradient);
             color: white;
             border: none;
-            border-radius: 16px;
+            border-radius: 12px;
             font-size: 1.2rem;
-            font-weight: 700;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             position: relative;
             overflow: hidden;
             box-shadow: var(--shadow-soft);
@@ -278,8 +277,8 @@
         }
 
         .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(79, 172, 254, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.3);
         }
 
         .submit-btn:active {
@@ -531,18 +530,18 @@
 </head>
 <body>
     <!-- Floating decorative elements -->
-    <div class="emoji-float">💰</div>
-    <div class="emoji-float">🏦</div>
-    <div class="emoji-float">📈</div>
+    <div class="emoji-float">🏠</div>
+    <div class="emoji-float">💝</div>
+    <div class="emoji-float">🌟</div>
 
     <div class="container fade-in">
         <div class="header">
-            <h1>💎 LoanGenius</h1>
-            <p class="subtitle">AI-Powered Loan Approval Prediction in Seconds</p>
+            <h1>🏠 Loan Helper</h1>
+            <p class="subtitle">Get a friendly assessment of your loan chances in minutes</p>
             <div class="trust-badges">
-                <div class="trust-badge">🔒 Bank-Grade Security</div>
-                <div class="trust-badge">⚡ Instant Results</div>
-                <div class="trust-badge">🎯 95% Accuracy</div>
+                <div class="trust-badge">🔒 Secure & Private</div>
+                <div class="trust-badge">⚡ Quick & Easy</div>
+                <div class="trust-badge">🎯 Reliable Results</div>
             </div>
         </div>
         
@@ -551,28 +550,28 @@
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
-            <div class="form-progress" id="formProgress">Complete the form to get your prediction</div>
+            <div class="form-progress" id="formProgress">Let's get to know your financial situation</div>
 
             <!-- Statistics -->
             <div class="stats-bar">
                 <div class="stat-item">
                     <div class="stat-number">50K+</div>
-                    <div class="stat-label">Loans Processed</div>
+                    <div class="stat-label">People Helped</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">95%</div>
-                    <div class="stat-label">Accuracy Rate</div>
+                    <div class="stat-label">Happy Users</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">< 5s</div>
-                    <div class="stat-label">Processing Time</div>
+                    <div class="stat-number">< 5min</div>
+                    <div class="stat-label">Assessment Time</div>
                 </div>
             </div>
 
             <!-- Security notice -->
             <div class="security-notice">
-                <h3>🔐 Your Privacy Matters</h3>
-                <p>All your financial information is encrypted and processed securely. We never store or share your personal data. This prediction is for informational purposes only.</p>
+                <h3>🔐 We Value Your Trust</h3>
+                <p>Your personal and financial information is kept completely private and secure. We use this information only to help assess your loan eligibility. This assessment is for guidance purposes and doesn't guarantee loan approval.</p>
             </div>
 
             <form action="/predict" method="post" id="loanForm">
@@ -639,7 +638,7 @@
                 </div>
 
                 <button type="submit" class="submit-btn" id="submitBtn">
-                     Get My Loan Prediction
+                     Check My Loan Eligibility
                 </button>
             </form>
 
@@ -649,20 +648,20 @@
                         {% if prediction == 'Approved' %}
                             <span class="result-icon">🎉</span>
                             <div class="result-message">
-                                <strong>Congratulations!</strong><br>
-                                Your loan is likely to be <strong>APPROVED</strong>
+                                <strong>Great News!</strong><br>
+                                Your loan application looks <strong>PROMISING</strong>
                             </div>
                             <div class="result-advice">
-                                Great job maintaining good financial health! You can proceed with confidence to apply for your loan.
+                                Based on your financial profile, you have a strong chance of loan approval. You can move forward with confidence!
                             </div>
                         {% else %}
-                            <span class="result-icon">😔</span>
+                            <span class="result-icon">�</span>
                             <div class="result-message">
-                                <strong>Not This Time</strong><br>
-                                Your loan might be <strong>REJECTED</strong>
+                                <strong>Let's Work Together</strong><br>
+                                Your application might need some <strong>IMPROVEMENTS</strong>
                             </div>
                             <div class="result-advice">
-                                Consider improving your CIBIL score or increasing your assets before applying. Every financial journey is unique!
+                                Don't worry! Consider strengthening your credit score or building more assets. Every financial journey has room for growth.
                             </div>
                         {% endif %}
                     </div>
@@ -672,13 +671,13 @@
             {% if error %}
                 <div class="result error-message">
                     <div class="result-content">
-                        <span class="result-icon">⚠️</span>
+                        <span class="result-icon">🤔</span>
                         <div class="result-message">
-                            <strong>Oops! Something went wrong</strong><br>
+                            <strong>Hmm, something's not right</strong><br>
                             {{ error }}
                         </div>
                         <div class="result-advice">
-                            Please check your inputs and try again. Make sure all fields contain valid numbers.
+                            Please double-check your information and try again. Make sure all numbers are entered correctly.
                         </div>
                     </div>
                 </div>
@@ -690,7 +689,7 @@
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-content">
             <div class="spinner"></div>
-            <div class="loading-text">Analyzing your financial profile...</div>
+            <div class="loading-text">Reviewing your information...</div>
         </div>
     </div>
 
@@ -710,15 +709,15 @@
             progressFill.style.width = progress + '%';
             
             if (progress === 0) {
-                formProgress.textContent = 'Complete the form to get your prediction';
+                formProgress.textContent = 'Let\'s get to know your financial situation';
             } else if (progress < 50) {
-                formProgress.textContent = `${Math.round(progress)}% complete - Keep going!`;
+                formProgress.textContent = `${Math.round(progress)}% complete - You\'re doing great!`;
             } else if (progress < 100) {
-                formProgress.textContent = `${Math.round(progress)}% complete - Almost there!`;
+                formProgress.textContent = `${Math.round(progress)}% complete - Almost finished!`;
             } else {
-                formProgress.textContent = '100% complete - Ready to predict!';
+                formProgress.textContent = '100% complete - Ready for your assessment!';
                 submitBtn.style.background = 'var(--success-gradient)';
-                submitBtn.innerHTML = 'Get My Prediction Now!';
+                submitBtn.innerHTML = 'Get My Assessment Now!';
             }
         }
 
@@ -998,7 +997,7 @@
             const loanAmount = parseFloat(document.getElementById('feature4').value);
             
             if (loanAmount / income > 15) {
-                const confirm = window.confirm('Your loan amount is very high compared to your income. This might affect approval chances. Do you want to continue?');
+                const confirm = window.confirm('Your requested loan amount is quite high compared to your income. This might affect your chances. Would you like to continue anyway?');
                 if (!confirm) {
                     // Restore formatted values if user cancels
                     inputs.forEach(input => {
