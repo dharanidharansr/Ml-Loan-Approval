@@ -4,3 +4,6 @@ scikit-learn==1.7.1
 numpy==2.3.2
 threadpoolctl==3.5.0
 gunicorn==21.2.0
+pytest==7.4.0
+pytest-cov==4.1.0
+pytest-flask==1.2.0

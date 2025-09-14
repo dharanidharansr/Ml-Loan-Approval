@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import pickle
 import numpy as np
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -11,6 +12,25 @@ with open('model.pkl', 'rb') as model_file:
 @app.route('/')
 def home():
     return render_template('index.html')
+
+@app.route('/health')
+def health_check():
+    """Health check endpoint for monitoring and CI/CD."""
+    try:
+        # Basic health checks
+        health_status = {
+            'status': 'healthy',
+            'timestamp': str(datetime.utcnow()),
+            'model_loaded': model is not None,
+            'version': '1.0.0'
+        }
+        return health_status, 200
+    except Exception as e:
+        return {
+            'status': 'unhealthy',
+            'error': str(e),
+            'timestamp': str(datetime.utcnow())
+        }, 500
 
 @app.route('/predict', methods=['POST'])
 def predict():
