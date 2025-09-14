@@ -33,26 +33,23 @@ Your Loan Approval Prediction application now has a complete CI/CD pipeline inte
 
 ## 🔧 Quick Setup Steps
 
-### 1. **Push to GitHub**
+### 1. **Push to GitHub** ✅ COMPLETED
 ```bash
 git add .
 git commit -m "Add CI/CD pipeline"
 git push origin main
 ```
 
-### 2. **Configure GitHub Secrets**
-Go to GitHub → Settings → Secrets and variables → Actions
+### 2. **Configure GitHub Secrets** ⚠️ **ACTION NEEDED**
+📖 **Follow the detailed guide**: [SECRETS_SETUP.md](./SECRETS_SETUP.md)
 
-Add these secrets:
-```
-RENDER_DEPLOY_HOOK_URL=your-render-hook-url
-APP_URL=https://your-app.onrender.com
-```
+**Required secrets:**
+- `RENDER_DEPLOY_HOOK_URL` - Get from Render dashboard
+- `APP_URL` - Your Render app URL
 
-### 3. **Optional Secrets for Enhanced Features**
-```
-SLACK_WEBHOOK=your-slack-webhook
-TEAMS_WEBHOOK=your-teams-webhook
+**Optional secrets:**
+- `SLACK_WEBHOOK_URL` - For notifications  
+- `SNYK_TOKEN` - For security scanning
 SNYK_TOKEN=your-snyk-token
 ```
 

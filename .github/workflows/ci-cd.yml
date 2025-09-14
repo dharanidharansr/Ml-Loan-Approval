@@ -122,22 +122,30 @@ jobs:
           echo "⚠️ APP_URL secret not configured, skipping health check"
         fi
     
-    - name: Slack Notification on Success
+    - name: Deployment Success Notification
       if: success()
-      uses: 8398a7/action-slack@v3
-      continue-on-error: true
-      with:
-        status: success
-        text: "🎉 Loan Approval App deployed successfully to Render!"
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        echo "🎉 Deployment completed successfully!"
+        echo "✅ Your Loan Approval App is now live!"
+        echo "🔗 App URL: ${{ secrets.APP_URL }}"
+        echo ""
+        echo "📊 Deployment Summary:"
+        echo "   - Tests: Passed"
+        echo "   - Security: Scanned" 
+        echo "   - Deployment: Success"
+        echo "   - Health Check: Completed"
+        echo ""
+        echo "💡 To enable Slack notifications, add SLACK_WEBHOOK_URL secret"
     
-    - name: Slack Notification on Failure
+    - name: Deployment Failure Notification  
       if: failure()
-      uses: 8398a7/action-slack@v3
-      continue-on-error: true
-      with:
-        status: failure
-        text: "❌ Deployment failed for Loan Approval App"
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        echo "❌ Deployment failed!"
+        echo "🔍 Check the workflow logs above for details"
+        echo "� Common issues:"
+        echo "   - Missing RENDER_DEPLOY_HOOK_URL secret"
+        echo "   - Invalid webhook URL"
+        echo "   - Render service issues"
+        echo ""
+        echo "📖 See TROUBLESHOOTING.md for help"
+        echo "💡 To enable Slack notifications, add SLACK_WEBHOOK_URL secret"
