@@ -1,7 +1,48 @@
+# Virtual environments
 ml/
+venv/
+env/
+.venv/
+.env/
+
+# Byte-compiled / optimized / DLL files
 __pycache__/
+*.py[cod]
+*$py.class
 *.pyc
+
+# Environment files
 .env
+.env.local
+.env.production
+
+# OS files
 .DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+
+# Jupyter Notebook
 *.ipynb_checkpoints
+.ipynb_checkpoints/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
 test_model.py
+*.tmp
+*.bak
+
+# Logs
+*.log
