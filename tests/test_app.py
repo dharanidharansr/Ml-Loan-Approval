@@ -4,10 +4,17 @@ import os
 import tempfile
 import pickle
 import numpy as np
-from sklearn.ensemble import RandomForestClassifier
 
 # Add the parent directory to sys.path to import app
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# Try to import sklearn, but make it optional for basic tests
+try:
+    from sklearn.ensemble import RandomForestClassifier
+    HAS_SKLEARN = True
+except ImportError:
+    HAS_SKLEARN = False
+    RandomForestClassifier = None
 
 from app import app
 
@@ -23,6 +30,9 @@ def client():
 @pytest.fixture
 def mock_model():
     """Create a mock model for testing."""
+    if not HAS_SKLEARN:
+        pytest.skip("scikit-learn not available")
+    
     # Create a simple mock model
     model = RandomForestClassifier(n_estimators=10, random_state=42)
     # Create dummy training data
@@ -38,6 +48,14 @@ def mock_model():
 
 class TestFlaskApp:
     """Test cases for the Flask application."""
+    
+    def test_health_endpoint(self, client):
+        """Test the health check endpoint."""
+        response = client.get('/health')
+        assert response.status_code == 200
+        data = response.get_json()
+        assert 'status' in data
+        assert 'timestamp' in data
     
     def test_home_route(self, client):
         """Test the home route returns the correct template."""
