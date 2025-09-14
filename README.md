@@ -13,6 +13,7 @@
 
 ---
 
+
 ## 📋 Table of Contents
 
 - [✨ Features](#-features)
@@ -21,7 +22,8 @@
 - [📊 Dataset](#-dataset)
 - [🚀 Installation](#-installation)
 - [💻 Usage](#-usage)
-- [🔮 Model Performance](#-model-performance)
+- [� CI/CD Pipeline](#-cicd-pipeline)
+- [�🔮 Model Performance](#-model-performance)
 - [📁 Project Structure](#-project-structure)
 - [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
@@ -50,9 +52,18 @@
 - RESTful API endpoints
 - Production-ready error handling
 
+🔄 **Automated CI/CD Pipeline**
+- GitHub Actions integration for continuous deployment
+- Automated testing and validation on every push
+- Direct deployment to Render with zero downtime
+- Health checks and deployment notifications
+
 ---
 
 ## 🎯 Demo
+
+### 🌐 Live Demo
+**Try the live application:** [https://loan-approval-checker.onrender.com](https://loan-approval-checker.onrender.com)
 
 ### Web Interface
 The application features a sleek, modern interface where users can input their financial information:
@@ -228,7 +239,37 @@ The machine learning model achieves excellent performance metrics:
 
 ---
 
-## 📁 Project Structure
+## � CI/CD Pipeline
+
+The project includes an automated CI/CD pipeline using GitHub Actions for seamless development and deployment:
+
+### Pipeline Features:
+- **Automated Testing:** Runs comprehensive tests on every push and pull request
+- **Code Quality Checks:** Ensures code meets quality standards
+- **Automated Deployment:** Deploys to Render automatically on successful builds
+- **Health Monitoring:** Includes application health checks
+
+### Workflow Stages:
+1. **Setup Environment:** Configures Python 3.11 and installs dependencies
+2. **Run Tests:** Executes test suite to validate functionality
+3. **Deploy to Render:** Automatically deploys to production on main branch
+
+### Setup Instructions:
+To enable automatic deployments, add your Render deploy hook URL as a GitHub secret:
+
+1. Go to your Render dashboard
+2. Copy your service's deploy hook URL
+3. In your GitHub repository, go to Settings > Secrets and variables > Actions
+4. Add a new secret named `RENDER_DEPLOY_HOOK_URL` with your deploy hook URL
+
+The pipeline will trigger automatically on:
+- ✅ Push to main branch
+- ✅ Pull requests
+- ✅ Manual workflow dispatch
+
+---
+
+## �📁 Project Structure
 
 ```
 Ml-Loan-Approval/
@@ -283,7 +324,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support & Contact
 
-- 📧 **Email:** dharanidharansr@example.com
+- 📧 **Email:** dharanidharan.sr@outlook.com
 - 🐛 **Issues:** [GitHub Issues](https://github.com/dharanidharansr/Ml-Loan-Approval/issues)
 - 💬 **Discussions:** [GitHub Discussions](https://github.com/dharanidharansr/Ml-Loan-Approval/discussions)
 
