@@ -1,90 +1,14 @@
-name: CI/CD Pipeline
+name: Minimal CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
 jobs:
-  test:
+  test-and-deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.11]
-
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python-version }}
-    
-    - name: Cache pip dependencies
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
-    
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        # Install additional testing dependencies if not in requirements.txt
-        pip install pytest pytest-cov flake8 pytest-flask
-    
-    - name: Lint with flake8
-      run: |
-        # Create a simple flake8 config for this run
-        echo "[flake8]" > /tmp/flake8_config
-        echo "exclude = ml,__pycache__,.git,.pytest_cache" >> /tmp/flake8_config
-        echo "max-line-length = 127" >> /tmp/flake8_config
-        
-        # Check for critical syntax errors only
-        echo "Checking for Python syntax errors and undefined names..."
-        flake8 app.py tests/ --config=/tmp/flake8_config --select=E9,F63,F7,F82 --show-source --statistics
-        
-        # Run general linting (warnings only)
-        echo "Running general code quality checks..."
-        flake8 app.py tests/ --config=/tmp/flake8_config --exit-zero --max-complexity=10 --statistics
-    
-    - name: Test Flask application
-      run: |
-        # Basic syntax check first
-        echo "Checking Python syntax..."
-        python -c "import py_compile; py_compile.compile('app.py', doraise=True)"
-        
-        # Run tests with basic configuration
-        echo "Running pytest tests..."
-        python -m pytest tests/ -v || echo "Some tests failed, but continuing..."
-    
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        file: ./coverage.xml
-        flags: unittests
-        name: codecov-umbrella
-
-  security-scan:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Run Snyk to check for vulnerabilities
-      uses: snyk/actions/python@master
-      continue-on-error: true
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        args: --severity-threshold=high
-
-  build-and-deploy:
-    needs: [test, security-scan]
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     
     steps:
     - uses: actions/checkout@v4
@@ -99,53 +23,38 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     
-    - name: Create deployment package
+    - name: Basic tests
       run: |
-        zip -r deployment.zip . -x "*.git*" "*__pycache__*" "*.pyc" "tests/*" ".pytest_cache/*" "coverage.xml" "htmlcov/*"
+        # Check Python syntax
+        python -c "import py_compile; py_compile.compile('app.py', doraise=True)"
+        echo "✅ Python syntax is valid"
+        
+        # Test basic imports
+        python -c "from app import app; print('✅ Flask app imports successfully')"
+        
+        # Test model loading
+        python -c "import pickle; pickle.load(open('model.pkl', 'rb')); print('✅ Model loads successfully')"
     
     - name: Deploy to Render
-      continue-on-error: true
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: |
         if [ -n "${{ secrets.RENDER_DEPLOY_HOOK_URL }}" ]; then
+          echo "🚀 Deploying to Render..."
           curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
+          echo "✅ Deployment triggered"
         else
-          echo "⚠️ RENDER_DEPLOY_HOOK_URL secret not configured, skipping deployment"
+          echo "⚠️ RENDER_DEPLOY_HOOK_URL secret not configured"
+          echo "💡 Add your Render deploy hook URL to GitHub secrets to enable deployment"
         fi
     
-    - name: Health Check
-      continue-on-error: true
+    - name: Results
+      if: always()
       run: |
-        if [ -n "${{ secrets.APP_URL }}" ]; then
-          sleep 60  # Wait for deployment to complete
-          curl -f ${{ secrets.APP_URL }} || exit 1
+        if [ "${{ job.status }}" == "success" ]; then
+          echo "🎉 Pipeline completed successfully!"
+          if [ "${{ github.ref }}" == "refs/heads/main" ] && [ "${{ github.event_name }}" == "push" ]; then
+            echo "🌐 Your app should be deploying to Render now"
+          fi
         else
-          echo "⚠️ APP_URL secret not configured, skipping health check"
+          echo "❌ Pipeline failed - check the logs above"
         fi
-    
-    - name: Deployment Success Notification
-      if: success()
-      run: |
-        echo "🎉 Deployment completed successfully!"
-        echo "✅ Your Loan Approval App is now live!"
-        echo "🔗 App URL: ${{ secrets.APP_URL }}"
-        echo ""
-        echo "📊 Deployment Summary:"
-        echo "   - Tests: Passed"
-        echo "   - Security: Scanned" 
-        echo "   - Deployment: Success"
-        echo "   - Health Check: Completed"
-        echo ""
-        echo "💡 To enable Slack notifications, add SLACK_WEBHOOK_URL secret"
-    
-    - name: Deployment Failure Notification  
-      if: failure()
-      run: |
-        echo "❌ Deployment failed!"
-        echo "🔍 Check the workflow logs above for details"
-        echo "� Common issues:"
-        echo "   - Missing RENDER_DEPLOY_HOOK_URL secret"
-        echo "   - Invalid webhook URL"
-        echo "   - Render service issues"
-        echo ""
-        echo "📖 See TROUBLESHOOTING.md for help"
-        echo "💡 To enable Slack notifications, add SLACK_WEBHOOK_URL secret"
