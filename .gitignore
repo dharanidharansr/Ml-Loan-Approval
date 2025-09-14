@@ -46,3 +46,4 @@ test_model.py
 
 # Logs
 *.log
+.idea/
