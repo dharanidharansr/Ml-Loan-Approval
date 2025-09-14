@@ -38,14 +38,27 @@ jobs:
     
     - name: Lint with flake8
       run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 app.py tests/ --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 app.py tests/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        # Create a simple flake8 config for this run
+        echo "[flake8]" > /tmp/flake8_config
+        echo "exclude = ml,__pycache__,.git,.pytest_cache" >> /tmp/flake8_config
+        echo "max-line-length = 127" >> /tmp/flake8_config
+        
+        # Check for critical syntax errors only
+        echo "Checking for Python syntax errors and undefined names..."
+        flake8 app.py tests/ --config=/tmp/flake8_config --select=E9,F63,F7,F82 --show-source --statistics
+        
+        # Run general linting (warnings only)
+        echo "Running general code quality checks..."
+        flake8 app.py tests/ --config=/tmp/flake8_config --exit-zero --max-complexity=10 --statistics
     
     - name: Test Flask application
       run: |
+        # Basic syntax check first
+        echo "Checking Python syntax..."
+        python -c "import py_compile; py_compile.compile('app.py', doraise=True)"
+        
         # Run tests with basic configuration
+        echo "Running pytest tests..."
         python -m pytest tests/ -v || echo "Some tests failed, but continuing..."
     
     - name: Upload coverage to Codecov
