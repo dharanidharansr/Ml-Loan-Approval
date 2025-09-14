@@ -1,5 +1,4 @@
 [flake8]
-# Exclude directories that shouldn't be linted
 exclude = 
     .git,
     __pycache__,
@@ -19,26 +18,15 @@ exclude =
     templates,
     static
 
-# Maximum line length
 max-line-length = 127
-
-# Maximum complexity
 max-complexity = 10
 
-# Ignore specific error codes
 ignore = 
-    E203,  # whitespace before ':'
-    W503,  # line break before binary operator
-    E501,  # line too long (handled by max-line-length)
+    E203,
+    W503,
+    E501
 
-# Select specific error codes to check
 select = E,W,F,C,N
-
-# Show source code for each error
 show-source = True
-
-# Count errors
 count = True
-
-# Show statistics
 statistics = True
