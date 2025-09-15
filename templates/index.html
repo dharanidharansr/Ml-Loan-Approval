@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loan Helper - Your Personal Loan Assistant</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Loan Assessment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,363 +12,160 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-gradient: linear-gradient(135deg, #6B73FF 0%, #9A60B2 100%);
-            --card-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --success-gradient: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
-            --error-gradient: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
-            --text-dark: #2d3748;
-            --text-light: #4a5568;
-            --border-color: #e2e8f0;
-            --shadow-soft: 0 8px 25px rgba(0, 0, 0, 0.08);
-            --shadow-strong: 0 15px 35px rgba(0, 0, 0, 0.12);
-        }
-
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--primary-gradient);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #1f2937;
+            line-height: 1.6;
             padding: 20px;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="200" r="100" fill="rgba(255,255,255,0.03)"/><circle cx="800" cy="300" r="150" fill="rgba(255,255,255,0.02)"/><circle cx="400" cy="700" r="80" fill="rgba(255,255,255,0.04)"/><circle cx="900" cy="800" r="120" fill="rgba(255,255,255,0.03)"/></svg>');
-            pointer-events: none;
-            animation: backgroundFloat 20s ease-in-out infinite;
-        }
-
-        @keyframes backgroundFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
+            min-height: 100vh;
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            box-shadow: var(--shadow-strong);
-            max-width: 800px;
-            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transform: translateY(0);
-            transition: all 0.3s ease;
-        }
-
-        .container:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
         }
 
         .header {
-            background: var(--card-gradient);
-            padding: 50px 40px;
+            background: #1f2937;
+            color: white;
+            padding: 40px 30px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.15)"/><circle cx="80" cy="30" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="2" fill="rgba(255,255,255,0.15)"/><circle cx="90" cy="80" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="60" cy="40" r="1.5" fill="rgba(255,255,255,0.2)"/></svg>');
-            animation: headerFloat 8s ease-in-out infinite;
-        }
-
-        @keyframes headerFloat {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-15px) scale(1.02); }
         }
 
         .header h1 {
-            color: white;
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            letter-spacing: -0.5px;
+            font-size: 1.875rem;
+            font-weight: 600;
+            margin-bottom: 8px;
         }
 
-        .header .subtitle {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1.2rem;
-            font-weight: 400;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 20px;
-        }
-
-        .trust-badges {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 25px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .trust-badge {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 12px 20px;
-            border-radius: 25px;
-            color: white;
-            font-size: 0.9rem;
-            font-weight: 500;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .header p {
+            opacity: 0.8;
+            font-weight: 300;
         }
 
         .form-container {
-            padding: 50px 40px;
+            padding: 40px 30px;
         }
 
-        .stats-bar {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 40px;
-            text-align: center;
+        .progress-bar {
+            width: 100%;
+            height: 2px;
+            background: #e5e7eb;
+            border-radius: 1px;
+            margin-bottom: 30px;
+            overflow: hidden;
         }
 
-        .stat-item {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            padding: 20px;
-            border-radius: 16px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            font-weight: 500;
+        .progress-fill {
+            height: 100%;
+            background: #1f2937;
+            width: 0%;
+            transition: width 0.3s ease;
         }
 
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
+            gap: 20px;
+            margin-bottom: 30px;
         }
 
         .input-group {
             position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .input-group:hover {
-            transform: translateY(-2px);
         }
 
         .input-group label {
             display: block;
-            margin-bottom: 10px;
-            color: var(--text-dark);
-            font-weight: 600;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #374151;
+            font-size: 0.875rem;
         }
 
         .input-group input {
             width: 100%;
-            padding: 16px 20px;
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
             font-size: 1rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            background: #fafbfc;
-            font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease;
+            background: #fff;
         }
 
         .input-group input:focus {
             outline: none;
-            border-color: #667eea;
-            background: white;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-            transform: translateY(-1px);
+            border-color: #1f2937;
+            box-shadow: 0 0 0 3px rgba(31, 41, 55, 0.1);
         }
 
         .input-group input:valid {
             border-color: #10b981;
-            background: rgba(16, 185, 129, 0.05);
         }
 
-        .input-tooltip {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            background: #e2e8f0;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            color: #64748b;
-            cursor: help;
-            transition: all 0.3s ease;
-        }
-
-        .input-tooltip:hover {
-            background: #4facfe;
-            color: white;
+        .input-group input.error {
+            border-color: #ef4444;
         }
 
         .submit-btn {
             width: 100%;
-            padding: 20px;
-            background: var(--card-gradient);
+            padding: 16px;
+            background: #1f2937;
             color: white;
             border: none;
-            border-radius: 12px;
-            font-size: 1.2rem;
-            font-weight: 600;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 0.5px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-soft);
-            font-family: 'Inter', sans-serif;
-        }
-
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .submit-btn:hover::before {
-            left: 100%;
+            transition: all 0.2s ease;
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.3);
-        }
-
-        .submit-btn:active {
-            transform: translateY(-1px);
+            background: #111827;
         }
 
         .submit-btn:disabled {
-            opacity: 0.7;
+            opacity: 0.5;
             cursor: not-allowed;
         }
 
         .result {
-            margin-top: 40px;
-            padding: 30px;
-            border-radius: 20px;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 6px;
             text-align: center;
-            font-size: 1.3rem;
-            font-weight: 600;
-            animation: resultSlideIn 0.6s ease-out;
-            position: relative;
-            overflow: hidden;
+            font-weight: 500;
         }
 
         .result.approved {
-            background: var(--success-gradient);
-            color: white;
-            box-shadow: 0 15px 35px rgba(17, 153, 142, 0.3);
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
         }
 
         .result.rejected {
-            background: var(--error-gradient);
-            color: white;
-            box-shadow: 0 15px 35px rgba(252, 70, 107, 0.3);
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
         }
 
         .result.error-message {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            color: white;
-            box-shadow: 0 15px 35px rgba(251, 191, 36, 0.3);
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fde68a;
         }
 
-        .result::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="30" cy="30" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="40" r="1.5" fill="rgba(255,255,255,0.15)"/><circle cx="50" cy="70" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
-            animation: resultFloat 4s ease-in-out infinite;
-        }
-
-        @keyframes resultSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        @keyframes resultFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .result-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .result-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            display: block;
+        .result-title {
+            font-size: 1.125rem;
+            margin-bottom: 8px;
         }
 
         .result-message {
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .result-advice {
-            font-size: 1rem;
-            opacity: 0.9;
-            font-weight: 400;
-            margin-top: 10px;
-            font-style: italic;
+            font-size: 0.875rem;
+            opacity: 0.8;
         }
 
         .loading-overlay {
@@ -380,1080 +176,26 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
             display: none;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             z-index: 1000;
-            backdrop-filter: blur(5px);
         }
 
         .loading-content {
             background: white;
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: var(--shadow-strong);
-        }
-
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #4facfe;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        .loading-text {
-            color: var(--text-dark);
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 6px;
-            background: #e2e8f0;
-            border-radius: 3px;
-            overflow: hidden;
-            margin-bottom: 30px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--card-gradient);
-            width: 0%;
-            transition: width 0.3s ease;
-            border-radius: 3px;
-        }
-
-        .security-notice {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border-left: 4px solid #0ea5e9;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 12px;
-            border: 1px solid #bae6fd;
-        }
-
-        .security-notice h3 {
-            color: #0c4a6e;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .security-notice p {
-            color: #0369a1;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.2rem;
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .container {
-                margin: 10px;
-            }
-            
-            .form-container {
-                padding: 30px 25px;
-            }
-            
-            .header {
-                padding: 40px 25px;
-            }
-
-            .stats-bar {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .trust-badges {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.6s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .input-group.filled input {
-            border-color: #10b981;
-            background: rgba(16, 185, 129, 0.05);
-        }
-
-        .form-progress {
-            text-align: center;
-            margin-bottom: 20px;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .emoji-float {
-            position: absolute;
-            font-size: 2rem;
-            opacity: 0.1;
-            animation: emojiFloat 15s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        .emoji-float:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-        .emoji-float:nth-child(2) { top: 60%; right: 15%; animation-delay: 5s; }
-        .emoji-float:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 10s; }
-
-        @keyframes emojiFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-    </style>
-</head>
-<body>
-    <!-- Floating decorative elements -->
-    <div class="emoji-float">🏠</div>
-    <div class="emoji-float">💝</div>
-    <div class="emoji-float">🌟</div>
-
-    <div class="container fade-in">
-        <div class="header">
-            <h1>🏠 Loan Helper</h1>
-            <p class="subtitle">Get a friendly assessment of your loan chances in minutes</p>
-            <div class="trust-badges">
-                <div class="trust-badge">🔒 Secure & Private</div>
-                <div class="trust-badge">⚡ Quick & Easy</div>
-                <div class="trust-badge">🎯 Reliable Results</div>
-            </div>
-        </div>
-        
-        <div class="form-container">
-            <!-- Progress indicator -->
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-            <div class="form-progress" id="formProgress">Let's get to know your financial situation</div>
-
-            <!-- Statistics -->
-            <div class="stats-bar">
-                <div class="stat-item">
-                    <div class="stat-number">50K+</div>
-                    <div class="stat-label">People Helped</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">95%</div>
-                    <div class="stat-label">Happy Users</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">< 5min</div>
-                    <div class="stat-label">Assessment Time</div>
-                </div>
-            </div>
-
-            <!-- Security notice -->
-            <div class="security-notice">
-                <h3>🔐 We Value Your Trust</h3>
-                <p>Your personal and financial information is kept completely private and secure. We use this information only to help assess your loan eligibility. This assessment is for guidance purposes and doesn't guarantee loan approval.</p>
-            </div>
-
-            <form action="/predict" method="post" id="loanForm">
-                <div class="form-grid">
-                    <div class="input-group">
-                        <label for="feature1">🎓 Education Status</label>
-                        <input type="text" name="feature1" id="feature1" placeholder="1 for Graduate, 0 for Not Graduate" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="feature2">💼 Employment Type</label>
-                        <input type="text" name="feature2" id="feature2" placeholder="1 for Self-Employed, 0 for Salaried" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="feature3">💰 Annual Income (₹)</label>
-                        <input type="text" name="feature3" id="feature3" placeholder="e.g., 500000 or 5,00,000" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="feature4">💳 Loan Amount (₹)</label>
-                        <input type="text" name="feature4" id="feature4" placeholder="e.g., 1000000 or 10,00,000" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="feature5">📅 Loan Term (Years)</label>
-                        <input type="text" name="feature5" id="feature5" placeholder="e.g., 15" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="feature6">📈 CIBIL Score</label>
-                        <input type="text" name="feature6" id="feature6" placeholder="e.g., 750" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="feature7">🏠 Residential Assets (₹)</label>
-                        <input type="text" name="feature7" id="feature7" placeholder="e.g., 5000000 or 50,00,000" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="feature8">🏢 Commercial Assets (₹)</label>
-                        <input type="text" name="feature8" id="feature8" placeholder="e.g., 2000000 or 20,00,000" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="feature9">💎 Luxury Assets (₹)</label>
-                        <input type="text" name="feature9" id="feature9" placeholder="e.g., 1000000 or 10,00,000" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="feature10">🏦 Bank Assets (₹)</label>
-                        <input type="text" name="feature10" id="feature10" placeholder="e.g., 3000000 or 30,00,000" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-btn" id="submitBtn">
-                     Check My Loan Eligibility
-                </button>
-            </form>
-
-            {% if prediction %}
-                <div class="result {{ 'approved' if prediction == 'Approved' else 'rejected' }}">
-                    <div class="result-content">
-                        {% if prediction == 'Approved' %}
-                            <span class="result-icon">🎉</span>
-                            <div class="result-message">
-                                <strong>Great News!</strong><br>
-                                Your loan application looks <strong>PROMISING</strong>
-                            </div>
-                            <div class="result-advice">
-                                Based on your financial profile, you have a strong chance of loan approval. You can move forward with confidence!
-                            </div>
-                        {% else %}
-                            <span class="result-icon">�</span>
-                            <div class="result-message">
-                                <strong>Let's Work Together</strong><br>
-                                Your application might need some <strong>IMPROVEMENTS</strong>
-                            </div>
-                            <div class="result-advice">
-                                Don't worry! Consider strengthening your credit score or building more assets. Every financial journey has room for growth.
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-            {% endif %}
-
-            {% if error %}
-                <div class="result error-message">
-                    <div class="result-content">
-                        <span class="result-icon">🤔</span>
-                        <div class="result-message">
-                            <strong>Hmm, something's not right</strong><br>
-                            {{ error }}
-                        </div>
-                        <div class="result-advice">
-                            Please double-check your information and try again. Make sure all numbers are entered correctly.
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-        </div>
-    </div>
-
-    <!-- Loading overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-content">
-            <div class="spinner"></div>
-            <div class="loading-text">Reviewing your information...</div>
-        </div>
-    </div>
-
-    <script>
-        // Enhanced form interactions
-        const form = document.getElementById('loanForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const loadingOverlay = document.getElementById('loadingOverlay');
-        const progressFill = document.getElementById('progressFill');
-        const formProgress = document.getElementById('formProgress');
-        const inputs = document.querySelectorAll('input[required]');
-
-        // Progress tracking
-        function updateProgress() {
-            const filledInputs = Array.from(inputs).filter(input => input.value.trim() !== '');
-            const progress = (filledInputs.length / inputs.length) * 100;
-            progressFill.style.width = progress + '%';
-            
-            if (progress === 0) {
-                formProgress.textContent = 'Let\'s get to know your financial situation';
-            } else if (progress < 50) {
-                formProgress.textContent = `${Math.round(progress)}% complete - You\'re doing great!`;
-            } else if (progress < 100) {
-                formProgress.textContent = `${Math.round(progress)}% complete - Almost finished!`;
-            } else {
-                formProgress.textContent = '100% complete - Ready for your assessment!';
-                submitBtn.style.background = 'var(--success-gradient)';
-                submitBtn.innerHTML = 'Get My Assessment Now!';
-            }
-        }
-
-        // Input interactions
-        inputs.forEach((input, index) => {
-            input.addEventListener('input', updateProgress);
-            
-            // Real-time input validation and formatting
-            input.addEventListener('input', function() {
-                const value = this.value.replace(/[^0-9.]/g, ''); // Allow only numbers and decimal
-                const numValue = parseFloat(value);
-                
-                // Education and Employment validation (0 or 1 only)
-                if (this.id === 'feature1' || this.id === 'feature2') {
-                    if (value === '0' || value === '1') {
-                        this.style.borderColor = '#10b981';
-                        this.style.background = 'rgba(16, 185, 129, 0.1)';
-                    } else if (value === '') {
-                        this.style.borderColor = 'var(--border-color)';
-                        this.style.background = '#fafbfc';
-                    } else {
-                        this.style.borderColor = '#ef4444';
-                        this.style.background = 'rgba(239, 68, 68, 0.1)';
-                    }
-                }
-                
-                // CIBIL Score validation
-                if (this.id === 'feature6' && numValue) {
-                    if (numValue >= 750) {
-                        this.style.borderColor = '#10b981';
-                        this.style.background = 'rgba(16, 185, 129, 0.1)';
-                    } else if (numValue >= 650) {
-                        this.style.borderColor = '#f59e0b';
-                        this.style.background = 'rgba(245, 158, 11, 0.1)';
-                    } else if (numValue >= 300) {
-                        this.style.borderColor = '#ef4444';
-                        this.style.background = 'rgba(239, 68, 68, 0.1)';
-                    }
-                }
-                
-                // Loan term validation
-                if (this.id === 'feature5' && numValue) {
-                    if (numValue >= 1 && numValue <= 30) {
-                        this.style.borderColor = '#10b981';
-                        this.style.background = 'rgba(16, 185, 129, 0.1)';
-                    } else {
-                        this.style.borderColor = '#f59e0b';
-                        this.style.background = 'rgba(245, 158, 11, 0.1)';
-                    }
-                }
-                
-                // Income vs Loan Amount validation
-                if (this.id === 'feature3' || this.id === 'feature4') {
-                    const income = parseFloat(document.getElementById('feature3').value.replace(/[^0-9.]/g, '')) || 0;
-                    const loanAmount = parseFloat(document.getElementById('feature4').value.replace(/[^0-9.]/g, '')) || 0;
-                    
-                    if (income && loanAmount) {
-                        const ratio = loanAmount / income;
-                        const loanField = document.getElementById('feature4');
-                        if (ratio > 10) {
-                            loanField.style.borderColor = '#ef4444';
-                            loanField.style.background = 'rgba(239, 68, 68, 0.1)';
-                        } else if (ratio > 5) {
-                            loanField.style.borderColor = '#f59e0b';
-                            loanField.style.background = 'rgba(245, 158, 11, 0.1)';
-                        } else {
-                            loanField.style.borderColor = '#10b981';
-                            loanField.style.background = 'rgba(16, 185, 129, 0.1)';
-                        }
-                    }
-                }
-            });
-            
-            input.addEventListener('focus', function() {
-                this.parentElement.style.transform = 'scale(1.03)';
-                this.parentElement.style.zIndex = '10';
-                
-                // Remove commas when focusing on currency fields
-                if (['feature3', 'feature4', 'feature7', 'feature8', 'feature9', 'feature10'].includes(this.id)) {
-                    this.value = this.value.replace(/,/g, '');
-                }
-            });
-            
-            input.addEventListener('blur', function() {
-                this.parentElement.style.transform = 'scale(1)';
-                this.parentElement.style.zIndex = '1';
-                
-                if (this.value.trim() !== '') {
-                    this.parentElement.classList.add('filled');
-                    
-                    // Format currency fields with commas
-                    if (['feature3', 'feature4', 'feature7', 'feature8', 'feature9', 'feature10'].includes(this.id)) {
-                        const cleanValue = this.value.replace(/[^0-9.]/g, '');
-                        const numValue = parseFloat(cleanValue);
-                        if (!isNaN(numValue)) {
-                            this.value = numValue.toLocaleString('en-IN');
-                        }
-                    }
-                    
-                    // Validate education and employment fields
-                    if (this.id === 'feature1' || this.id === 'feature2') {
-                        const cleanValue = this.value.replace(/[^01]/g, '');
-                        if (cleanValue === '0' || cleanValue === '1') {
-                            this.value = cleanValue;
-                        } else {
-                            this.value = '';
-                            this.parentElement.classList.remove('filled');
-                        }
-                    }
-                    
-                    // Validate CIBIL score range
-                    if (this.id === 'feature6') {
-                        const cleanValue = this.value.replace(/[^0-9]/g, '');
-                        const numValue = parseInt(cleanValue);
-                        if (numValue >= 300 && numValue <= 900) {
-                            this.value = cleanValue;
-                        } else if (cleanValue) {
-                            this.style.borderColor = '#ef4444';
-                            this.style.background = 'rgba(239, 68, 68, 0.1)';
-                        }
-                    }
-                    
-                    // Validate loan term
-                    if (this.id === 'feature5') {
-                        const cleanValue = this.value.replace(/[^0-9]/g, '');
-                        const numValue = parseInt(cleanValue);
-                        if (numValue >= 1 && numValue <= 30) {
-                            this.value = cleanValue;
-                        } else if (cleanValue) {
-                            this.style.borderColor = '#f59e0b';
-                            this.style.background = 'rgba(245, 158, 11, 0.1)';
-                        }
-                    }
-                } else {
-                    this.parentElement.classList.remove('filled');
-                }
-            });
-
-            // Allow only numbers for specific fields
-            input.addEventListener('keypress', function(e) {
-                // For education and employment, only allow 0 and 1
-                if (this.id === 'feature1' || this.id === 'feature2') {
-                    if (e.key !== '0' && e.key !== '1' && e.key !== 'Backspace' && e.key !== 'Delete' && e.key !== 'Tab') {
-                        e.preventDefault();
-                    }
-                }
-                
-                // For numeric fields, only allow numbers, decimal point, and control keys
-                if (['feature3', 'feature4', 'feature5', 'feature6', 'feature7', 'feature8', 'feature9', 'feature10'].includes(this.id)) {
-                    if (!/[0-9]/.test(e.key) && e.key !== '.' && e.key !== 'Backspace' && e.key !== 'Delete' && e.key !== 'Tab' && e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') {
-                        e.preventDefault();
-                    }
-                    
-                    // Prevent multiple decimal points
-                    if (e.key === '.' && this.value.includes('.')) {
-                        e.preventDefault();
-                    }
-                }
-            });
-
-            // Input validation feedback
-            input.addEventListener('input', function() {
-                const value = parseFloat(this.value.replace(/[^0-9.]/g, ''));
-                
-                // General validation for positive numbers
-                if (['feature3', 'feature4', 'feature7', 'feature8', 'feature9', 'feature10'].includes(this.id) && value > 0) {
-                    this.style.borderColor = '#10b981';
-                    this.style.background = 'rgba(16, 185, 129, 0.05)';
-                }
-            });
-        });
-
-        // Tooltip interactions
-        document.querySelectorAll('.input-tooltip').forEach(tooltip => {
-            tooltip.addEventListener('click', function() {
-                const inputGroup = this.parentElement;
-                const fieldName = inputGroup.querySelector('label').textContent;
-                
-                let message = '';
-                switch(inputGroup.querySelector('input').id) {
-                    case 'feature1':
-                        message = 'Enter 1 if you are a graduate, 0 if not';
-                        break;
-                    case 'feature2':
-                        message = 'Enter 1 if self-employed, 0 if salaried';
-                        break;
-                    case 'feature3':
-                        message = 'Your total annual income in rupees';
-                        break;
-                    case 'feature4':
-                        message = 'Amount you want to borrow in rupees';
-                        break;
-                    case 'feature5':
-                        message = 'Number of years to repay the loan';
-                        break;
-                    case 'feature6':
-                        message = 'Your credit score (300-900). Higher is better!';
-                        break;
-                    case 'feature7':
-                        message = 'Total value of residential properties you own';
-                        break;
-                    case 'feature8':
-                        message = 'Total value of commercial properties you own';
-                        break;
-                    case 'feature9':
-                        message = 'Value of luxury items like jewelry, cars, etc.';
-                        break;
-                    case 'feature10':
-                        message = 'Total savings and bank account balance';
-                        break;
-                }
-                
-                alert(fieldName + ':\n' + message);
-            });
-        });
-
-        // Form submission
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Validate all fields before submission
-            let isValid = true;
-            const errors = [];
-            
-            // Clean all input values before validation and submission
-            inputs.forEach(input => {
-                // Remove commas and extra spaces, keep only numbers and decimal points
-                const cleanValue = input.value.replace(/[^0-9.]/g, '');
-                const numValue = parseFloat(cleanValue);
-                
-                // Check if field is empty
-                if (!cleanValue.trim()) {
-                    isValid = false;
-                    errors.push(`${input.previousElementSibling.textContent} is required`);
-                    return;
-                }
-                
-                // Specific validations
-                if (input.id === 'feature1' || input.id === 'feature2') {
-                    if (cleanValue !== '0' && cleanValue !== '1') {
-                        isValid = false;
-                        errors.push(`${input.previousElementSibling.textContent} must be 0 or 1`);
-                    } else {
-                        input.value = cleanValue; // Set clean value
-                    }
-                } else if (input.id === 'feature6') {
-                    if (numValue < 300 || numValue > 900) {
-                        isValid = false;
-                        errors.push('CIBIL Score must be between 300 and 900');
-                    } else {
-                        input.value = cleanValue; // Set clean value
-                    }
-                } else if (input.id === 'feature5') {
-                    if (numValue < 1 || numValue > 30) {
-                        isValid = false;
-                        errors.push('Loan Term must be between 1 and 30 years');
-                    } else {
-                        input.value = cleanValue; // Set clean value
-                    }
-                } else if (['feature3', 'feature4', 'feature7', 'feature8', 'feature9', 'feature10'].includes(input.id)) {
-                    if (numValue <= 0 || isNaN(numValue)) {
-                        isValid = false;
-                        errors.push(`${input.previousElementSibling.textContent} must be a positive number`);
-                    } else {
-                        input.value = cleanValue; // Set clean value without commas
-                    }
-                }
-            });
-            
-            if (!isValid) {
-                alert('Please fix the following errors:\n\n' + errors.join('\n'));
-                return;
-            }
-            
-            // Check income to loan ratio
-            const income = parseFloat(document.getElementById('feature3').value);
-            const loanAmount = parseFloat(document.getElementById('feature4').value);
-            
-            if (loanAmount / income > 15) {
-                const confirm = window.confirm('Your requested loan amount is quite high compared to your income. This might affect your chances. Would you like to continue anyway?');
-                if (!confirm) {
-                    // Restore formatted values if user cancels
-                    inputs.forEach(input => {
-                        if (['feature3', 'feature4', 'feature7', 'feature8', 'feature9', 'feature10'].includes(input.id)) {
-                            const numValue = parseFloat(input.value);
-                            if (!isNaN(numValue)) {
-                                input.value = numValue.toLocaleString('en-IN');
-                            }
-                        }
-                    });
-                    return;
-                }
-            }
-            
-            // Show loading overlay
-            loadingOverlay.style.display = 'flex';
-            
-            // Submit with clean values after a brief delay
-            setTimeout(() => {
-                this.submit();
-            }, 1500);
-        });
-
-        // Initial progress update
-        updateProgress();
-
-        // Add smooth scrolling to result if present
-        const result = document.querySelector('.result');
-        if (result) {
-            setTimeout(() => {
-                result.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 500);
-        }
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.key === 'Enter') {
-                if (Array.from(inputs).every(input => input.value.trim() !== '')) {
-                    form.submit();
-                }
-            }
-        });
-    </script>
-</body>
-</html>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loan Helper - Your Personal Loan Assistant</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-gradient: linear-gradient(135deg, #6B73FF 0%, #9A60B2 100%);
-            --card-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --success-gradient: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
-            --error-gradient: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
-            --text-dark: #2d3748;
-            --text-light: #4a5568;
-            --border-color: #e2e8f0;
-            --shadow-soft: 0 8px 25px rgba(0, 0, 0, 0.08);
-            --shadow-strong: 0 15px 35px rgba(0, 0, 0, 0.12);
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--primary-gradient);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="200" r="100" fill="rgba(255,255,255,0.03)"/><circle cx="800" cy="300" r="150" fill="rgba(255,255,255,0.02)"/><circle cx="400" cy="700" r="80" fill="rgba(255,255,255,0.04)"/><circle cx="900" cy="800" r="120" fill="rgba(255,255,255,0.03)"/></svg>');
-            pointer-events: none;
-            animation: backgroundFloat 20s ease-in-out infinite;
-        }
-
-        @keyframes backgroundFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
-        }
-
-        .container {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            box-shadow: var(--shadow-strong);
-            max-width: 800px;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transform: translateY(0);
-            transition: all 0.3s ease;
-        }
-
-        .container:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        .header {
-            background: var(--card-gradient);
-            padding: 50px 40px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.15)"/><circle cx="80" cy="30" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="2" fill="rgba(255,255,255,0.15)"/><circle cx="90" cy="80" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="60" cy="40" r="1.5" fill="rgba(255,255,255,0.2)"/></svg>');
-            animation: headerFloat 8s ease-in-out infinite;
-        }
-
-        @keyframes headerFloat {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-15px) scale(1.02); }
-        }
-
-        .header h1 {
-            color: white;
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            letter-spacing: -0.5px;
-        }
-
-        .header .subtitle {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1.2rem;
-            font-weight: 400;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 20px;
-        }
-
-        .trust-badges {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 25px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .trust-badge {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 12px 20px;
-            border-radius: 25px;
-            color: white;
-            font-size: 0.9rem;
-            font-weight: 500;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .form-container {
-            padding: 50px 40px;
-        }
-
-        .stats-bar {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .stat-item {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            padding: 20px;
-            border-radius: 16px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .input-group {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .input-group:hover {
-            transform: translateY(-2px);
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 10px;
-            color: var(--text-dark);
-            font-weight: 600;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 16px 20px;
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            background: #fafbfc;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: #667eea;
-            background: white;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-            transform: translateY(-1px);
-        }
-
-        .input-group input:valid {
-            border-color: #10b981;
-            background: rgba(16, 185, 129, 0.05);
-        }
-
-        .input-tooltip {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            background: #e2e8f0;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            color: #64748b;
-            cursor: help;
-            transition: all 0.3s ease;
-        }
-
-        .input-tooltip:hover {
-            background: #4facfe;
-            color: white;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 20px;
-            background: var(--card-gradient);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 0.5px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-soft);
-            font-family: 'Inter', sans-serif;
-        }
-
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .submit-btn:hover::before {
-            left: 100%;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.3);
-        }
-
-        .submit-btn:active {
-            transform: translateY(-1px);
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-
-        .result {
-            margin-top: 40px;
             padding: 30px;
-            border-radius: 20px;
+            border-radius: 8px;
             text-align: center;
-            font-size: 1.3rem;
-            font-weight: 600;
-            animation: resultSlideIn 0.6s ease-out;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .result.approved {
-            background: var(--success-gradient);
-            color: white;
-            box-shadow: 0 15px 35px rgba(17, 153, 142, 0.3);
-        }
-
-        .result.rejected {
-            background: var(--error-gradient);
-            color: white;
-            box-shadow: 0 15px 35px rgba(252, 70, 107, 0.3);
-        }
-
-        .result.error-message {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            color: white;
-            box-shadow: 0 15px 35px rgba(251, 191, 36, 0.3);
-        }
-
-        .result::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="30" cy="30" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="40" r="1.5" fill="rgba(255,255,255,0.15)"/><circle cx="50" cy="70" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
-            animation: resultFloat 4s ease-in-out infinite;
-        }
-
-        @keyframes resultSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        @keyframes resultFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .result-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .result-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .result-message {
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .result-advice {
-            font-size: 1rem;
-            opacity: 0.9;
-            font-weight: 400;
-            margin-top: 10px;
-            font-style: italic;
-        }
-
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(5px);
-        }
-
-        .loading-content {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: var(--shadow-strong);
         }
 
         .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #4facfe;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #1f2937;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 30px;
+            height: 30px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        .loading-text {
-            color: var(--text-dark);
-            font-weight: 600;
-            font-size: 1.1rem;
+            margin: 0 auto 15px;
         }
 
         @keyframes spin {
@@ -1461,633 +203,289 @@
             100% { transform: rotate(360deg); }
         }
 
-        .progress-bar {
-            width: 100%;
-            height: 6px;
-            background: #e2e8f0;
-            border-radius: 3px;
-            overflow: hidden;
-            margin-bottom: 30px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--card-gradient);
-            width: 0%;
-            transition: width 0.3s ease;
-            border-radius: 3px;
+        .form-progress {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #6b7280;
+            font-size: 0.875rem;
         }
 
         .security-notice {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border-left: 4px solid #0ea5e9;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 12px;
+            background: #f0f9ff;
             border: 1px solid #bae6fd;
-        }
-
-        .security-notice h3 {
-            color: #0c4a6e;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .security-notice p {
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            font-size: 0.875rem;
             color: #0369a1;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin: 0;
         }
 
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.2rem;
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            
+        @media (max-width: 640px) {
             .container {
-                margin: 10px;
+                margin: 0;
+                border-radius: 0;
             }
-            
+
             .form-container {
-                padding: 30px 25px;
+                padding: 30px 20px;
             }
-            
+
             .header {
-                padding: 40px 25px;
-            }
-
-            .stats-bar {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .trust-badges {
-                flex-direction: column;
-                gap: 10px;
+                padding: 30px 20px;
             }
         }
 
         .fade-in {
-            animation: fadeIn 0.6s ease-out;
+            animation: fadeIn 0.3s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        .input-group.filled input {
-            border-color: #10b981;
-            background: rgba(16, 185, 129, 0.05);
-        }
-
-        .form-progress {
-            text-align: center;
-            margin-bottom: 20px;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .emoji-float {
-            position: absolute;
-            font-size: 2rem;
-            opacity: 0.1;
-            animation: emojiFloat 15s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        .emoji-float:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-        .emoji-float:nth-child(2) { top: 60%; right: 15%; animation-delay: 5s; }
-        .emoji-float:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 10s; }
-
-        @keyframes emojiFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
         }
     </style>
 </head>
 <body>
-    <!-- Floating decorative elements -->
-    <div class="emoji-float">🏠</div>
-    <div class="emoji-float">💝</div>
-    <div class="emoji-float">🌟</div>
-
-    <div class="container fade-in">
-        <div class="header">
-            <h1>🏠 Loan Helper</h1>
-            <p class="subtitle">Get a friendly assessment of your loan chances in minutes</p>
-            <div class="trust-badges">
-                <div class="trust-badge">🔒 Secure & Private</div>
-                <div class="trust-badge">⚡ Quick & Easy</div>
-                <div class="trust-badge">🎯 Reliable Results</div>
-            </div>
-        </div>
-        
-        <div class="form-container">
-            <!-- Progress indicator -->
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-            <div class="form-progress" id="formProgress">Let's get to know your financial situation</div>
-
-            <!-- Statistics -->
-            <div class="stats-bar">
-                <div class="stat-item">
-                    <div class="stat-number">50K+</div>
-                    <div class="stat-label">People Helped</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">95%</div>
-                    <div class="stat-label">Happy Users</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">< 5min</div>
-                    <div class="stat-label">Assessment Time</div>
-                </div>
-            </div>
-
-            <!-- Security notice -->
-            <div class="security-notice">
-                <h3>🔐 We Value Your Trust</h3>
-                <p>Your personal and financial information is kept completely private and secure. We use this information only to help assess your loan eligibility. This assessment is for guidance purposes and doesn't guarantee loan approval.</p>
-            </div>
-
-            <form action="/predict" method="post" id="loanForm">
-                <div class="form-grid">
-                    <div class="input-group">
-                        <label for="feature1">🎓 Education Status</label>
-                        <input type="text" name="feature1" id="feature1" placeholder="1 for Graduate, 0 for Not Graduate" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="feature2">💼 Employment Type</label>
-                        <input type="text" name="feature2" id="feature2" placeholder="1 for Self-Employed, 0 for Salaried" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="feature3">💰 Annual Income (₹)</label>
-                        <input type="text" name="feature3" id="feature3" placeholder="e.g., 500000 or 5,00,000" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="feature4">💳 Loan Amount (₹)</label>
-                        <input type="text" name="feature4" id="feature4" placeholder="e.g., 1000000 or 10,00,000" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="feature5">📅 Loan Term (Years)</label>
-                        <input type="text" name="feature5" id="feature5" placeholder="e.g., 15" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="feature6">📈 CIBIL Score</label>
-                        <input type="text" name="feature6" id="feature6" placeholder="e.g., 750" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="feature7">🏠 Residential Assets (₹)</label>
-                        <input type="text" name="feature7" id="feature7" placeholder="e.g., 5000000 or 50,00,000" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="feature8">🏢 Commercial Assets (₹)</label>
-                        <input type="text" name="feature8" id="feature8" placeholder="e.g., 2000000 or 20,00,000" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="feature9">💎 Luxury Assets (₹)</label>
-                        <input type="text" name="feature9" id="feature9" placeholder="e.g., 1000000 or 10,00,000" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="feature10">🏦 Bank Assets (₹)</label>
-                        <input type="text" name="feature10" id="feature10" placeholder="e.g., 3000000 or 30,00,000" required>
-                        <div class="input-tooltip">?</div>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-btn" id="submitBtn">
-                     Check My Loan Eligibility
-                </button>
-            </form>
-
-            {% if prediction %}
-                <div class="result {{ 'approved' if prediction == 'Approved' else 'rejected' }}">
-                    <div class="result-content">
-                        {% if prediction == 'Approved' %}
-                            <span class="result-icon">🎉</span>
-                            <div class="result-message">
-                                <strong>Great News!</strong><br>
-                                Your loan application looks <strong>PROMISING</strong>
-                            </div>
-                            <div class="result-advice">
-                                Based on your financial profile, you have a strong chance of loan approval. You can move forward with confidence!
-                            </div>
-                        {% else %}
-                            <span class="result-icon">�</span>
-                            <div class="result-message">
-                                <strong>Let's Work Together</strong><br>
-                                Your application might need some <strong>IMPROVEMENTS</strong>
-                            </div>
-                            <div class="result-advice">
-                                Don't worry! Consider strengthening your credit score or building more assets. Every financial journey has room for growth.
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-            {% endif %}
-
-            {% if error %}
-                <div class="result error-message">
-                    <div class="result-content">
-                        <span class="result-icon">🤔</span>
-                        <div class="result-message">
-                            <strong>Hmm, something's not right</strong><br>
-                            {{ error }}
-                        </div>
-                        <div class="result-advice">
-                            Please double-check your information and try again. Make sure all numbers are entered correctly.
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-        </div>
+<div class="container fade-in">
+    <div class="header">
+        <h1>Loan Assessment</h1>
+        <p>Quick eligibility check</p>
     </div>
 
-    <!-- Loading overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-content">
-            <div class="spinner"></div>
-            <div class="loading-text">Reviewing your information...</div>
+    <div class="form-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
         </div>
+        <div class="form-progress" id="formProgress">Fill out the form to get started</div>
+
+        <div class="security-notice">
+            Your information is kept private and secure. This assessment is for guidance purposes only.
+        </div>
+
+        <form action="/predict" method="post" id="loanForm">
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="feature1">Education (1 = Graduate, 0 = Not Graduate)</label>
+                    <input type="text" name="feature1" id="feature1" placeholder="0 or 1" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="feature2">Employment (1 = Self-Employed, 0 = Salaried)</label>
+                    <input type="text" name="feature2" id="feature2" placeholder="0 or 1" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="feature3">Annual Income (₹)</label>
+                    <input type="text" name="feature3" id="feature3" placeholder="500000" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="feature4">Loan Amount (₹)</label>
+                    <input type="text" name="feature4" id="feature4" placeholder="1000000" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="feature5">Loan Term (Years)</label>
+                    <input type="text" name="feature5" id="feature5" placeholder="15" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="feature6">CIBIL Score</label>
+                    <input type="text" name="feature6" id="feature6" placeholder="750" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="feature7">Residential Assets (₹)</label>
+                    <input type="text" name="feature7" id="feature7" placeholder="5000000" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="feature8">Commercial Assets (₹)</label>
+                    <input type="text" name="feature8" id="feature8" placeholder="2000000" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="feature9">Luxury Assets (₹)</label>
+                    <input type="text" name="feature9" id="feature9" placeholder="1000000" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="feature10">Bank Assets (₹)</label>
+                    <input type="text" name="feature10" id="feature10" placeholder="3000000" required>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                Check Eligibility
+            </button>
+        </form>
+
+        {% if prediction %}
+        <div class="result {{ 'approved' if prediction == 'Approved' else 'rejected' }}">
+            {% if prediction == 'Approved' %}
+            <div class="result-title">Application Approved</div>
+            <div class="result-message">
+                Your loan application has a strong chance of approval based on your financial profile.
+            </div>
+            {% else %}
+            <div class="result-title">Needs Improvement</div>
+            <div class="result-message">
+                Consider strengthening your credit score or building more assets before applying.
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="result error-message">
+            <div class="result-title">Error</div>
+            <div class="result-message">{{ error }}</div>
+        </div>
+        {% endif %}
     </div>
+</div>
 
-    <script>
-        // Enhanced form interactions
-        const form = document.getElementById('loanForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const loadingOverlay = document.getElementById('loadingOverlay');
-        const progressFill = document.getElementById('progressFill');
-        const formProgress = document.getElementById('formProgress');
-        const inputs = document.querySelectorAll('input[required]');
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-content">
+        <div class="spinner"></div>
+        <div>Processing your information...</div>
+    </div>
+</div>
 
-        // Progress tracking
-        function updateProgress() {
-            const filledInputs = Array.from(inputs).filter(input => input.value.trim() !== '');
-            const progress = (filledInputs.length / inputs.length) * 100;
-            progressFill.style.width = progress + '%';
-            
-            if (progress === 0) {
-                formProgress.textContent = 'Let\'s get to know your financial situation';
-            } else if (progress < 50) {
-                formProgress.textContent = `${Math.round(progress)}% complete - You\'re doing great!`;
-            } else if (progress < 100) {
-                formProgress.textContent = `${Math.round(progress)}% complete - Almost finished!`;
-            } else {
-                formProgress.textContent = '100% complete - Ready for your assessment!';
-                submitBtn.style.background = 'var(--success-gradient)';
-                submitBtn.innerHTML = 'Get My Assessment Now!';
-            }
+<script>
+    const form = document.getElementById('loanForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const progressFill = document.getElementById('progressFill');
+    const formProgress = document.getElementById('formProgress');
+    const inputs = document.querySelectorAll('input[required]');
+
+    function updateProgress() {
+        const filledInputs = Array.from(inputs).filter(input => input.value.trim() !== '');
+        const progress = (filledInputs.length / inputs.length) * 100;
+        progressFill.style.width = progress + '%';
+
+        if (progress === 0) {
+            formProgress.textContent = 'Fill out the form to get started';
+        } else if (progress < 100) {
+            formProgress.textContent = `${Math.round(progress)}% complete`;
+        } else {
+            formProgress.textContent = 'Ready to submit';
         }
+    }
 
-        // Input interactions
-        inputs.forEach((input, index) => {
-            input.addEventListener('input', updateProgress);
-            
-            // Real-time input validation and formatting
-            input.addEventListener('input', function() {
-                const value = this.value.replace(/[^0-9.]/g, ''); // Allow only numbers and decimal
-                const numValue = parseFloat(value);
-                
-                // Education and Employment validation (0 or 1 only)
-                if (this.id === 'feature1' || this.id === 'feature2') {
-                    if (value === '0' || value === '1') {
-                        this.style.borderColor = '#10b981';
-                        this.style.background = 'rgba(16, 185, 129, 0.1)';
-                    } else if (value === '') {
-                        this.style.borderColor = 'var(--border-color)';
-                        this.style.background = '#fafbfc';
-                    } else {
-                        this.style.borderColor = '#ef4444';
-                        this.style.background = 'rgba(239, 68, 68, 0.1)';
-                    }
-                }
-                
-                // CIBIL Score validation
-                if (this.id === 'feature6' && numValue) {
-                    if (numValue >= 750) {
-                        this.style.borderColor = '#10b981';
-                        this.style.background = 'rgba(16, 185, 129, 0.1)';
-                    } else if (numValue >= 650) {
-                        this.style.borderColor = '#f59e0b';
-                        this.style.background = 'rgba(245, 158, 11, 0.1)';
-                    } else if (numValue >= 300) {
-                        this.style.borderColor = '#ef4444';
-                        this.style.background = 'rgba(239, 68, 68, 0.1)';
-                    }
-                }
-                
-                // Loan term validation
-                if (this.id === 'feature5' && numValue) {
-                    if (numValue >= 1 && numValue <= 30) {
-                        this.style.borderColor = '#10b981';
-                        this.style.background = 'rgba(16, 185, 129, 0.1)';
-                    } else {
-                        this.style.borderColor = '#f59e0b';
-                        this.style.background = 'rgba(245, 158, 11, 0.1)';
-                    }
-                }
-                
-                // Income vs Loan Amount validation
-                if (this.id === 'feature3' || this.id === 'feature4') {
-                    const income = parseFloat(document.getElementById('feature3').value.replace(/[^0-9.]/g, '')) || 0;
-                    const loanAmount = parseFloat(document.getElementById('feature4').value.replace(/[^0-9.]/g, '')) || 0;
-                    
-                    if (income && loanAmount) {
-                        const ratio = loanAmount / income;
-                        const loanField = document.getElementById('feature4');
-                        if (ratio > 10) {
-                            loanField.style.borderColor = '#ef4444';
-                            loanField.style.background = 'rgba(239, 68, 68, 0.1)';
-                        } else if (ratio > 5) {
-                            loanField.style.borderColor = '#f59e0b';
-                            loanField.style.background = 'rgba(245, 158, 11, 0.1)';
-                        } else {
-                            loanField.style.borderColor = '#10b981';
-                            loanField.style.background = 'rgba(16, 185, 129, 0.1)';
-                        }
-                    }
-                }
-            });
-            
-            input.addEventListener('focus', function() {
-                this.parentElement.style.transform = 'scale(1.03)';
-                this.parentElement.style.zIndex = '10';
-                
-                // Remove commas when focusing on currency fields
-                if (['feature3', 'feature4', 'feature7', 'feature8', 'feature9', 'feature10'].includes(this.id)) {
-                    this.value = this.value.replace(/,/g, '');
-                }
-            });
-            
-            input.addEventListener('blur', function() {
-                this.parentElement.style.transform = 'scale(1)';
-                this.parentElement.style.zIndex = '1';
-                
-                if (this.value.trim() !== '') {
-                    this.parentElement.classList.add('filled');
-                    
-                    // Format currency fields with commas
-                    if (['feature3', 'feature4', 'feature7', 'feature8', 'feature9', 'feature10'].includes(this.id)) {
-                        const cleanValue = this.value.replace(/[^0-9.]/g, '');
-                        const numValue = parseFloat(cleanValue);
-                        if (!isNaN(numValue)) {
-                            this.value = numValue.toLocaleString('en-IN');
-                        }
-                    }
-                    
-                    // Validate education and employment fields
-                    if (this.id === 'feature1' || this.id === 'feature2') {
-                        const cleanValue = this.value.replace(/[^01]/g, '');
-                        if (cleanValue === '0' || cleanValue === '1') {
-                            this.value = cleanValue;
-                        } else {
-                            this.value = '';
-                            this.parentElement.classList.remove('filled');
-                        }
-                    }
-                    
-                    // Validate CIBIL score range
-                    if (this.id === 'feature6') {
-                        const cleanValue = this.value.replace(/[^0-9]/g, '');
-                        const numValue = parseInt(cleanValue);
-                        if (numValue >= 300 && numValue <= 900) {
-                            this.value = cleanValue;
-                        } else if (cleanValue) {
-                            this.style.borderColor = '#ef4444';
-                            this.style.background = 'rgba(239, 68, 68, 0.1)';
-                        }
-                    }
-                    
-                    // Validate loan term
-                    if (this.id === 'feature5') {
-                        const cleanValue = this.value.replace(/[^0-9]/g, '');
-                        const numValue = parseInt(cleanValue);
-                        if (numValue >= 1 && numValue <= 30) {
-                            this.value = cleanValue;
-                        } else if (cleanValue) {
-                            this.style.borderColor = '#f59e0b';
-                            this.style.background = 'rgba(245, 158, 11, 0.1)';
-                        }
-                    }
-                } else {
-                    this.parentElement.classList.remove('filled');
-                }
-            });
+    inputs.forEach(input => {
+        input.addEventListener('input', function() {
+            updateProgress();
 
-            // Allow only numbers for specific fields
-            input.addEventListener('keypress', function(e) {
-                // For education and employment, only allow 0 and 1
-                if (this.id === 'feature1' || this.id === 'feature2') {
-                    if (e.key !== '0' && e.key !== '1' && e.key !== 'Backspace' && e.key !== 'Delete' && e.key !== 'Tab') {
-                        e.preventDefault();
-                    }
-                }
-                
-                // For numeric fields, only allow numbers, decimal point, and control keys
-                if (['feature3', 'feature4', 'feature5', 'feature6', 'feature7', 'feature8', 'feature9', 'feature10'].includes(this.id)) {
-                    if (!/[0-9]/.test(e.key) && e.key !== '.' && e.key !== 'Backspace' && e.key !== 'Delete' && e.key !== 'Tab' && e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') {
-                        e.preventDefault();
-                    }
-                    
-                    // Prevent multiple decimal points
-                    if (e.key === '.' && this.value.includes('.')) {
-                        e.preventDefault();
-                    }
-                }
-            });
+            // Remove error styling
+            this.classList.remove('error');
 
-            // Input validation feedback
-            input.addEventListener('input', function() {
-                const value = parseFloat(this.value.replace(/[^0-9.]/g, ''));
-                
-                // General validation for positive numbers
-                if (['feature3', 'feature4', 'feature7', 'feature8', 'feature9', 'feature10'].includes(this.id) && value > 0) {
-                    this.style.borderColor = '#10b981';
-                    this.style.background = 'rgba(16, 185, 129, 0.05)';
+            // Validate based on field type
+            const value = this.value.replace(/[^0-9.]/g, '');
+            const numValue = parseFloat(value);
+
+            if (this.id === 'feature1' || this.id === 'feature2') {
+                if (value !== '0' && value !== '1' && value !== '') {
+                    this.classList.add('error');
                 }
-            });
+            } else if (this.id === 'feature6' && value) {
+                if (numValue < 300 || numValue > 900) {
+                    this.classList.add('error');
+                }
+            } else if (this.id === 'feature5' && value) {
+                if (numValue < 1 || numValue > 30) {
+                    this.classList.add('error');
+                }
+            }
         });
 
-        // Tooltip interactions
-        document.querySelectorAll('.input-tooltip').forEach(tooltip => {
-            tooltip.addEventListener('click', function() {
-                const inputGroup = this.parentElement;
-                const fieldName = inputGroup.querySelector('label').textContent;
-                
-                let message = '';
-                switch(inputGroup.querySelector('input').id) {
-                    case 'feature1':
-                        message = 'Enter 1 if you are a graduate, 0 if not';
-                        break;
-                    case 'feature2':
-                        message = 'Enter 1 if self-employed, 0 if salaried';
-                        break;
-                    case 'feature3':
-                        message = 'Your total annual income in rupees';
-                        break;
-                    case 'feature4':
-                        message = 'Amount you want to borrow in rupees';
-                        break;
-                    case 'feature5':
-                        message = 'Number of years to repay the loan';
-                        break;
-                    case 'feature6':
-                        message = 'Your credit score (300-900). Higher is better!';
-                        break;
-                    case 'feature7':
-                        message = 'Total value of residential properties you own';
-                        break;
-                    case 'feature8':
-                        message = 'Total value of commercial properties you own';
-                        break;
-                    case 'feature9':
-                        message = 'Value of luxury items like jewelry, cars, etc.';
-                        break;
-                    case 'feature10':
-                        message = 'Total savings and bank account balance';
-                        break;
-                }
-                
-                alert(fieldName + ':\n' + message);
-            });
-        });
+        input.addEventListener('keypress', function(e) {
+            // Allow only numbers for all fields
+            if (!/[0-9]/.test(e.key) && e.key !== '.' && e.key !== 'Backspace' && e.key !== 'Delete' && e.key !== 'Tab') {
+                e.preventDefault();
+            }
 
-        // Form submission
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Validate all fields before submission
-            let isValid = true;
-            const errors = [];
-            
-            // Clean all input values before validation and submission
-            inputs.forEach(input => {
-                // Remove commas and extra spaces, keep only numbers and decimal points
-                const cleanValue = input.value.replace(/[^0-9.]/g, '');
-                const numValue = parseFloat(cleanValue);
-                
-                // Check if field is empty
-                if (!cleanValue.trim()) {
-                    isValid = false;
-                    errors.push(`${input.previousElementSibling.textContent} is required`);
-                    return;
-                }
-                
-                // Specific validations
-                if (input.id === 'feature1' || input.id === 'feature2') {
-                    if (cleanValue !== '0' && cleanValue !== '1') {
-                        isValid = false;
-                        errors.push(`${input.previousElementSibling.textContent} must be 0 or 1`);
-                    } else {
-                        input.value = cleanValue; // Set clean value
-                    }
-                } else if (input.id === 'feature6') {
-                    if (numValue < 300 || numValue > 900) {
-                        isValid = false;
-                        errors.push('CIBIL Score must be between 300 and 900');
-                    } else {
-                        input.value = cleanValue; // Set clean value
-                    }
-                } else if (input.id === 'feature5') {
-                    if (numValue < 1 || numValue > 30) {
-                        isValid = false;
-                        errors.push('Loan Term must be between 1 and 30 years');
-                    } else {
-                        input.value = cleanValue; // Set clean value
-                    }
-                } else if (['feature3', 'feature4', 'feature7', 'feature8', 'feature9', 'feature10'].includes(input.id)) {
-                    if (numValue <= 0 || isNaN(numValue)) {
-                        isValid = false;
-                        errors.push(`${input.previousElementSibling.textContent} must be a positive number`);
-                    } else {
-                        input.value = cleanValue; // Set clean value without commas
-                    }
-                }
-            });
-            
-            if (!isValid) {
-                alert('Please fix the following errors:\n\n' + errors.join('\n'));
+            // Prevent multiple decimal points
+            if (e.key === '.' && this.value.includes('.')) {
+                e.preventDefault();
+            }
+        });
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        let isValid = true;
+        const errors = [];
+
+        inputs.forEach(input => {
+            const cleanValue = input.value.replace(/[^0-9.]/g, '');
+            const numValue = parseFloat(cleanValue);
+
+            if (!cleanValue.trim()) {
+                isValid = false;
+                input.classList.add('error');
                 return;
             }
-            
-            // Check income to loan ratio
-            const income = parseFloat(document.getElementById('feature3').value);
-            const loanAmount = parseFloat(document.getElementById('feature4').value);
-            
-            if (loanAmount / income > 15) {
-                const confirm = window.confirm('Your requested loan amount is quite high compared to your income. This might affect your chances. Would you like to continue anyway?');
-                if (!confirm) {
-                    // Restore formatted values if user cancels
-                    inputs.forEach(input => {
-                        if (['feature3', 'feature4', 'feature7', 'feature8', 'feature9', 'feature10'].includes(input.id)) {
-                            const numValue = parseFloat(input.value);
-                            if (!isNaN(numValue)) {
-                                input.value = numValue.toLocaleString('en-IN');
-                            }
-                        }
-                    });
-                    return;
+
+            if (input.id === 'feature1' || input.id === 'feature2') {
+                if (cleanValue !== '0' && cleanValue !== '1') {
+                    isValid = false;
+                    input.classList.add('error');
+                    errors.push('Education and Employment must be 0 or 1');
+                } else {
+                    input.value = cleanValue;
+                }
+            } else if (input.id === 'feature6') {
+                if (numValue < 300 || numValue > 900) {
+                    isValid = false;
+                    input.classList.add('error');
+                    errors.push('CIBIL Score must be between 300-900');
+                } else {
+                    input.value = cleanValue;
+                }
+            } else if (input.id === 'feature5') {
+                if (numValue < 1 || numValue > 30) {
+                    isValid = false;
+                    input.classList.add('error');
+                    errors.push('Loan Term must be between 1-30 years');
+                } else {
+                    input.value = cleanValue;
+                }
+            } else {
+                if (numValue <= 0 || isNaN(numValue)) {
+                    isValid = false;
+                    input.classList.add('error');
+                    errors.push('Amount fields must be positive numbers');
+                } else {
+                    input.value = cleanValue;
                 }
             }
-            
-            // Show loading overlay
-            loadingOverlay.style.display = 'flex';
-            
-            // Submit with clean values after a brief delay
-            setTimeout(() => {
-                this.submit();
-            }, 1500);
         });
 
-        // Initial progress update
-        updateProgress();
-
-        // Add smooth scrolling to result if present
-        const result = document.querySelector('.result');
-        if (result) {
-            setTimeout(() => {
-                result.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 500);
+        if (!isValid) {
+            const uniqueErrors = [...new Set(errors)];
+            alert('Please fix the following errors:\n\n' + uniqueErrors.join('\n'));
+            return;
         }
 
-        // Keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.key === 'Enter') {
-                if (Array.from(inputs).every(input => input.value.trim() !== '')) {
-                    form.submit();
-                }
-            }
-        });
-    </script>
+        loadingOverlay.style.display = 'flex';
+
+        setTimeout(() => {
+            this.submit();
+        }, 1000);
+    });
+
+    updateProgress();
+
+    // Smooth scroll to result if present
+    const result = document.querySelector('.result');
+    if (result) {
+        setTimeout(() => {
+            result.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+    }
+</script>
 </body>
 </html>
->>>>>>> 66991e2b (solved)
